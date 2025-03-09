@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Exitoso</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido, <span id="userName"></span>!</h1>
+        <div class="confirmation-card">
+            <h2>Resumen de información</h2>
+            <div class="user-info">
+                <p><strong>Nombre:</strong> <span id="displayNombre"></span></p>
+                <p><strong>Correo electrónico:</strong> <span id="displayEmail"></span></p>
+                <p><strong>Fecha de nacimiento:</strong> <span id="displayFechaNacimiento">No proporcionada</span></p>
+            </div>
+            <div class="button-group">
+                <a href="inicio.html" class="btn">Ir al inicio</a>
+                <a href="#" class="btn btn-primary">Continuar al área de usuario</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        
+            const params = new URLSearchParams(window.location.search);
+            
+            
+            const nombre = params.get('nombre');
+            const email = params.get('email');
+            const fechaNacimiento = params.get('fechaNacimiento');
+            
+            document.getElementById('userName').textContent = nombre;
+            document.getElementById('displayNombre').textContent = nombre;
+            document.getElementById('displayEmail').textContent = email;
+            
+            if (fechaNacimiento) {
+                const fecha = new Date(fechaNacimiento);
+                const opciones = { day: '2-digit', month: '2-digit', year: 'numeric' };
+                document.getElementById('displayFechaNacimiento').textContent = fecha.toLocaleDateString('es-ES', opciones);
+            }
+        });
+    </script>
+</body>
+</html>
